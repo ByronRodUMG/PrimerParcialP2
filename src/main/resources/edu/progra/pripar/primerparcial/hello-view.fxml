@@ -1,16 +1,132 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
 
-<?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="edu.progra.pripar.primerparcial.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
-
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.progra.pripar.primerparcial.HelloController">
+    <children>
+        <MenuBar VBox.vgrow="NEVER">
+            <menus>
+                <Menu mnemonicParsing="false" text="Archivo">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Nuevo" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Cerrar" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" onAction="#onSalirClick" text="Salir">
+                        </MenuItem>
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Editar">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Undo" />
+                        <MenuItem mnemonicParsing="false" text="Redo" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                        <MenuItem mnemonicParsing="false" text="Cut" />
+                        <MenuItem mnemonicParsing="false" text="Copy" />
+                        <MenuItem mnemonicParsing="false" text="Paste" />
+                        <MenuItem mnemonicParsing="false" text="Delete" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Ayuda">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Acerca de..." />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+            <children>
+                <TabPane layoutY="-1.0" prefHeight="374.0" prefWidth="640.0" tabClosingPolicy="UNAVAILABLE">
+                    <tabs>
+                        <Tab text="Controles">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <Label layoutX="126.0" layoutY="32.0" prefHeight="20.0" prefWidth="112.0" text="Selecciona color:">
+                                            <font>
+                                                <Font size="14.0" />
+                                            </font>
+                                        </Label>
+                                        <TextField layoutX="382.0" layoutY="114.0" promptText="Nombre..." />
+                                        <TextArea editable="false" layoutX="356.0" layoutY="47.0" prefHeight="50.0" prefWidth="239.0" text="Ingresa tu nombre de usuario&#10;y contraseña" />
+                                        <Button fx:id="btnAceptar" layoutX="145.0" layoutY="134.0" mnemonicParsing="false" onAction="#onAceptarClick" text="Aceptar">
+                                        </Button>
+                                        <ChoiceBox fx:id="choiceBox" layoutX="106.0" layoutY="60.0" prefWidth="150.0" />
+                                        <ComboBox fx:id="comboBox" editable="true" layoutX="106.0" layoutY="98.0" prefWidth="150.0" promptText="ComboBox" />
+                                        <ToggleButton layoutX="401.0" layoutY="232.0" mnemonicParsing="false" onAction="#onAumentarClick" text="Aumentar progreso">
+                                        </ToggleButton>
+                                        <CheckBox layoutX="85.0" layoutY="182.0" mnemonicParsing="false" text="Check1" />
+                                        <CheckBox layoutX="85.0" layoutY="211.0" mnemonicParsing="false" text="Check2" />
+                                        <RadioButton layoutX="199.0" layoutY="182.0" mnemonicParsing="false" text="Verdadero">
+                                            <toggleGroup>
+                                                <ToggleGroup fx:id="verificar" />
+                                            </toggleGroup>
+                                        </RadioButton>
+                                        <RadioButton layoutX="199.0" layoutY="211.0" mnemonicParsing="false" text="Falso" toggleGroup="$verificar" />
+                                        <ProgressBar fx:id="progressBar" layoutX="376.0" layoutY="272.0" prefWidth="200.0" progress="0.0" />
+                                        <Slider blockIncrement="1.0" layoutX="111.0" layoutY="261.0" majorTickUnit="1.0" max="5.0" minorTickCount="0" showTickLabels="true" showTickMarks="true" snapToTicks="true" />
+                                        <PasswordField layoutX="382.0" layoutY="162.0" promptText="Contraseña..." />
+                              <Circle fx:id="circleL" fill="WHITE" layoutX="66.0" layoutY="76.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
+                              <Circle fx:id="circleR" fill="WHITE" layoutX="296.0" layoutY="76.0" radius="25.0" stroke="BLACK" strokeType="INSIDE" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Table &amp; Tree">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <TableView fx:id="tableView" layoutX="80.0" layoutY="65.0" prefHeight="200.0" prefWidth="200.0">
+                                            <columns>
+                                                <TableColumn fx:id="apellidoColumn" prefWidth="100.0" text="Apellido" />
+                                                <TableColumn fx:id="nombreColumn" prefWidth="100.0" text="Nombre" />
+                                            </columns>
+                                            <columnResizePolicy>
+                                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                                            </columnResizePolicy>
+                                            <tooltip>
+                                                <Tooltip text="Esto es una tabla" />
+                                            </tooltip>
+                                        </TableView>
+                                        <TreeView fx:id="treeView" layoutX="353.0" layoutY="65.0" prefHeight="200.0" prefWidth="200.0">
+                                            <root>
+                                                <TreeItem value="Raiz">
+                                                    <children>
+                                                        <TreeItem value="Hijo 1" />
+                                                        <TreeItem value="Hijo 2" />
+                                                        <TreeItem value="Hijo 3" />
+                                                    </children>
+                                                </TreeItem>
+                                            </root>
+                                            <tooltip>
+                                                <Tooltip text="Esto es un árbol" />
+                                            </tooltip>
+                                        </TreeView>
+                              <Button fx:id="btnAdd" layoutX="148.0" layoutY="275.0" mnemonicParsing="false" onAction="#onAddClick" text="Añadir" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                        <Tab text="Pickers">
+                            <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                    <children>
+                                        <DatePicker layoutX="219.0" layoutY="53.0" promptText="DatePicker" />
+                                        <ColorPicker layoutX="71.0" layoutY="53.0" promptText="ColorPicker" />
+                                        <Label layoutX="290.0" layoutY="25.0" text="Date Picker" />
+                                        <Label layoutX="79.0" layoutY="25.0" text="Color Picker" />
+                                    </children>
+                                </AnchorPane>
+                            </content>
+                        </Tab>
+                    </tabs>
+                </TabPane>
+            </children>
+        </AnchorPane>
+    </children>
 </VBox>
